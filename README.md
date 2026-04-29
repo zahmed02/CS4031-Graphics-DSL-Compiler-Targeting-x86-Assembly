@@ -7,13 +7,15 @@ A small domain‑specific language for drawing 2D graphics and simple animations
 
 ## ✨ Language Features
 
-- **Variables** – auto‑declared on first assignment, integer only  
-- **Arithmetic** – `+`, `-`, `*`, `/` (integer division), parentheses, unary minus  
-- **Comparisons** – `<` and `>` (results in 0 or 1)  
-- **Control flow** – `if … then … end`, `loop <expr> times … end`  
-- **Drawing** – `clear_screen`, `draw_pixel x, y, color`, `draw_rect x, y, w, h, color`  
-- **Timing & input** – `delay ms`, `wait_key`  
-- **Comments** – line comments with `//`
+| Feature Category | Syntax / Description |
+|-----------------|----------------------|
+| **Variables** | Auto‑declared on first assignment, integer only |
+| **Arithmetic** | `+`, `-`, `*`, `/` (integer division), parentheses, unary minus |
+| **Comparisons** | `<` and `>` (results in 0 or 1) |
+| **Control Flow** | `if … then … end`, `loop <expr> times … end` |
+| **Drawing** | `clear_screen`, `draw_pixel x, y, color`, `draw_rect x, y, w, h, color` |
+| **Timing & Input** | `delay ms`, `wait_key` |
+| **Comments** | Line comments with `//` |
 
 The generated assembly uses the Irvine32 library for console manipulation (`Gotoxy`, `WriteChar`, `ClrScr`, `Delay`, `ReadChar`).
 
@@ -24,8 +26,8 @@ The generated assembly uses the Irvine32 library for console manipulation (`Goto
 - Verify: `rustc --version`
 
 ### Assembler & linker (MASM + Irvine32)
-- Microsoft Macro Assembler (`ml.exe`) – comes with Visual Studio Build Tools or Visual Studio 2022 (select “Desktop development with C++”)  
-- Irvine32 library – place it, e.g., in `D:\DevTools\Irvine\` (adjust the path in commands)  
+- Microsoft Macro Assembler (`ml.exe`): comes with Visual Studio Build Tools or Visual Studio 2022 (select “Desktop development with C++”)  
+- Irvine32 library: place it, e.g., in `D:\DevTools\Irvine\` (adjust the path in commands)  
 - The following files must be present: `Irvine32.inc`, `Irvine32.lib`
 
 ### Environment (for this project)
@@ -50,8 +52,8 @@ The compiler follows the standard structure taught in CS4031:
 
 | Phase | Implementation | Location |
 |-------|----------------|----------|
-| **Lexical analysis** | `logos` – converts source char stream into tokens | `src/lexer/mod.rs` |
-| **Syntax analysis** | Recursive‑descent – builds an AST | `src/parser/mod.rs` |
+| **Lexical analysis** | `logos`: converts source char stream into tokens | `src/lexer/mod.rs` |
+| **Syntax analysis** | Recursive‑descent: builds an AST | `src/parser/mod.rs` |
 | **Semantic analysis** | Symbol table + type checking (all integers) | `src/semantic/mod.rs` |
 | **Intermediate code generation** | Three‑address code (TAC) with temporaries and labels | `src/ir/mod.rs` |
 | **Machine‑independent optimization** | Constant folding (enabled with `-O` flag) | `src/optimizer.rs` |
@@ -162,19 +164,13 @@ link bounce.obj D:\DevTools\Irvine\Irvine32.lib kernel32.lib user32.lib /subsyst
 ## 🧰 Dependencies & Where They Are Used
 
 ### Rust crates (declared in `Cargo.toml`)
-- **`logos`** – used only in the lexer to generate tokens from source text.  
-- **`clap`** – used in `main.rs` to parse command‑line arguments (`--input`, `--output`, `--optimize`).  
-- **`anyhow`** – used for flexible error handling throughout the compiler.
+- **`logos`**: used only in the lexer to generate tokens from source text.  
+- **`clap`**: used in `main.rs` to parse command‑line arguments (`--input`, `--output`, `--optimize`).  
+- **`anyhow`**: used for flexible error handling throughout the compiler.
 
 All crates are downloaded and compiled into the `target/` directory when you run `cargo build`. No system‑wide installation is required.
 
 ### External tools (must be installed separately)
-- **MASM (`ml.exe`)** – part of Visual Studio Build Tools or Visual Studio.  
-- **Irvine32 library** – available from Kip Irvine’s website. Place it in a known directory (e.g., `D:\DevTools\Irvine`).  
-- **Windows SDK linker (`link.exe`)** – also included with Visual Studio Build Tools.
-
-```bash
-git add README.md
-git commit -m "Add comprehensive README"
-git push origin main
-```
+- **MASM (`ml.exe`)**: part of Visual Studio Build Tools or Visual Studio.  
+- **Irvine32 library**: available from Kip Irvine’s website. Place it in a known directory (e.g., `D:\DevTools\Irvine`).  
+- **Windows SDK linker (`link.exe`)**: also included with Visual Studio Build Tools.
