@@ -1,10 +1,9 @@
-# PixelLang Compiler – A Graphics DSL Targeting x86 Assembly
+# CS4031 – Graphics DSL Targeting x86 Assembly
 
-**Course:** CS4031 Compiler Construction  
 **Language:** Rust (latest stable)  
 **Target:** x86 assembly + Irvine32 library → executable console graphics
 
-PixelLang is a small domain‑specific language for drawing 2D graphics and simple animations on the Windows console. The compiler performs all classical compilation phases (lexical, syntax, semantic analysis, intermediate code generation, optimization, and x86 code generation) and produces assembly files that can be assembled with MASM and linked with the Irvine32 library.
+A small domain‑specific language for drawing 2D graphics and simple animations on the Windows console. The compiler performs all classical compilation phases (lexical, syntax, semantic analysis, intermediate code generation, optimization, and x86 code generation) and produces assembly files that can be assembled with MASM and linked with the Irvine32 library.
 
 ## ✨ Language Features
 
