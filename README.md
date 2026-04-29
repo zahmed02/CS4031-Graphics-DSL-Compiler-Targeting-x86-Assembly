@@ -1,4 +1,4 @@
-# CS4031 Compiler Construction Project
+# CS4031 Graphics DSL Compiler Targeting x86 Assembly
 
 **Language:** Rust (latest stable)  
 **Target:** x86 assembly + Irvine32 library → executable console graphics
@@ -74,6 +74,7 @@ The executable will be at `target/release/cc-project.exe` (or `target/debug/cc-p
 ### 1. Compile a `.pixel` source file to assembly
 
 ```bash
+cargo build
 cargo run -- --input examples/demo.pixel --output asm_output/demo.asm
 ```
 
@@ -118,7 +119,7 @@ All examples are located in the `examples/` folder.
 | `checkerboard.pixel` | Draws a checkerboard‑like pattern |
 | `timer.pixel` | A shrinking progress bar |
 
-### Quick test with `bounce.pixel`
+### Sample test with `bounce.pixel`
 
 ```bash
 cargo run -- --input examples/bounce.pixel --output asm_output/bounce.asm
@@ -127,8 +128,6 @@ ml /c /coff /I D:\DevTools\Irvine bounce.asm
 link bounce.obj D:\DevTools\Irvine\Irvine32.lib kernel32.lib user32.lib /subsystem:console
 .\bounce.exe
 ```
-
-You will see a moving rectangle bouncing between x=2 and x=30.
 
 ## 📂 Project Structure
 
@@ -160,17 +159,7 @@ You will see a moving rectangle bouncing between x=2 and x=30.
 └── target/               (build artefacts, ignored by Git)
 ```
 
-## ⚠️ Known Limitations
-
-- No `else` clause (only `if … then … end`)  
-- Only `<` and `>` comparisons; `==`, `!=`, `<=`, `>=` are not supported.  
-- Colors are ignored – `draw_pixel` draws `*`, `draw_rect` draws filled `#`.  
-- No floating‑point numbers.  
-- All variables are global (scoping is flat, but `if`/`loop` create nested scopes).  
-
-These limitations are intentional to keep the project focused on the compiler pipeline.
-
-## 🧰 Dependencies – Where They Are Used
+## 🧰 Dependencies & Where They Are Used
 
 ### Rust crates (declared in `Cargo.toml`)
 - **`logos`** – used only in the lexer to generate tokens from source text.  
@@ -183,18 +172,6 @@ All crates are downloaded and compiled into the `target/` directory when you run
 - **MASM (`ml.exe`)** – part of Visual Studio Build Tools or Visual Studio.  
 - **Irvine32 library** – available from Kip Irvine’s website. Place it in a known directory (e.g., `D:\DevTools\Irvine`).  
 - **Windows SDK linker (`link.exe`)** – also included with Visual Studio Build Tools.
-
-## 📄 License
-
-This project is created for educational purposes as part of CS4031 – Compiler Construction.
-
-## 🙏 Acknowledgements
-
-- Kip Irvine for the Irvine32 library  
-- The Rust community for `logos`, `clap`, and `anyhow`  
-- Course instructor for guidance on compiler architecture
-
-Simply copy the entire block above, paste it into a file named `README.md` in your project root, and commit & push it:
 
 ```bash
 git add README.md
