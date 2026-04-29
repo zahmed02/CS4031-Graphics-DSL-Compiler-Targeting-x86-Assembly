@@ -5,7 +5,7 @@
 
 A small domain‑specific language for drawing 2D graphics and simple animations on the Windows console. The compiler performs all classical compilation phases (lexical, syntax, semantic analysis, intermediate code generation, optimization, and x86 code generation) and produces assembly files that can be assembled with MASM and linked with the Irvine32 library.
 
-## ✨ Language Features
+## Language Features
 
 | Feature Category | Syntax / Description |
 |-----------------|----------------------|
@@ -19,7 +19,7 @@ A small domain‑specific language for drawing 2D graphics and simple animations
 
 The generated assembly uses the Irvine32 library for console manipulation (`Gotoxy`, `WriteChar`, `ClrScr`, `Delay`, `ReadChar`).
 
-## 🛠️ Prerequisites
+## Prerequisites
 
 ### Rust toolchain
 - Install Rust from [rustup.rs](https://rustup.rs/) (MSVC toolchain recommended on Windows)  
@@ -33,7 +33,7 @@ The generated assembly uses the Irvine32 library for console manipulation (`Goto
 ### Environment (for this project)
 - The compiler outputs `.asm` files; you assemble & link them manually using the provided commands.
 
-## 📦 Rust Dependencies (Cargo.toml)
+## Rust Dependencies (Cargo.toml)
 
 All dependencies are downloaded automatically by Cargo. No manual installation is required.
 
@@ -46,7 +46,7 @@ All dependencies are downloaded automatically by Cargo. No manual installation i
 
 > **Note:** The compiler uses a **hand‑written recursive‑descent parser** (no `pest` or `nom` in the final version) to keep dependencies minimal and maximise control.
 
-## 🔬 Compiler Phases – Complete Pipeline
+## Compiler Phases Complete Pipeline
 
 The compiler follows the standard structure taught in CS4031:
 
@@ -62,7 +62,7 @@ The compiler follows the standard structure taught in CS4031:
 
 The output assembly is human‑readable, uses `.data` for variables, and includes helper functions (`DrawPixel_helper`, `DrawRect_helper`) that draw `*` and `#` using `Gotoxy`/`WriteChar`.
 
-## 🚀 Building the Compiler
+## Constructing the Compiler
 
 ```bash
 git clone https://github.com/zahmed02/CS4031-Graphics-DSL-Compiler-Targeting-x86-Assembly.git
@@ -107,7 +107,7 @@ link demo.obj D:\DevTools\Irvine\Irvine32.lib kernel32.lib user32.lib /subsystem
 
 > **Note:** Adjust the path `/I D:\DevTools\Irvine` and the library paths to where you placed the Irvine32 files.
 
-## 🧪 Example Programs
+## Example Programs
 
 All examples are located in the `examples/` folder.
 
@@ -131,7 +131,7 @@ link bounce.obj D:\DevTools\Irvine\Irvine32.lib kernel32.lib user32.lib /subsyst
 .\bounce.exe
 ```
 
-## 📂 Project Structure
+## Project Structure
 
 ```
 .
@@ -161,7 +161,7 @@ link bounce.obj D:\DevTools\Irvine\Irvine32.lib kernel32.lib user32.lib /subsyst
 └── target/               (build artefacts, ignored by Git)
 ```
 
-## 🧰 Dependencies & Where They Are Used
+## Dependencies & Where They Are Used
 
 ### Rust crates (declared in `Cargo.toml`)
 - **`logos`**: used only in the lexer to generate tokens from source text.  
