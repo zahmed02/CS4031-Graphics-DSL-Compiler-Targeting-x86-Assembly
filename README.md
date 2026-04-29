@@ -1,4 +1,4 @@
-# CS4031 – Graphics DSL Targeting x86 Assembly
+# CS4031 Compiler Construction Project
 
 **Language:** Rust (latest stable)  
 **Target:** x86 assembly + Irvine32 library → executable console graphics
