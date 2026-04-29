@@ -19,6 +19,18 @@ A small domain‑specific language for drawing 2D graphics and simple animations
 
 The generated assembly uses the Irvine32 library for console manipulation (`Gotoxy`, `WriteChar`, `ClrScr`, `Delay`, `ReadChar`).
 
+## Technologies Used
+
+| Category | Technology | Purpose |
+|----------|------------|---------|
+| **Language** | Rust (latest stable) | Compiler implementation |
+| **Lexer** | `logos` 0.15 | Token generation |
+| **Parser** | Hand‑written recursive descent | No external parser generator |
+| **CLI parsing** | `clap` 4.5 (derive feature) | Command‑line arguments |
+| **Error handling** | `anyhow` 1.0 | Flexible error propagation |
+| **Assembly target** | x86 (MASM syntax) + Irvine32 library | Executable console graphics |
+| **Assembler / Linker** | MASM (`ml.exe`), Windows `link.exe` | Produce `.exe` |
+
 ## Prerequisites
 
 ### Rust toolchain
