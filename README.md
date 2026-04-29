@@ -6,8 +6,6 @@
 
 PixelLang is a small domain‑specific language for drawing 2D graphics and simple animations on the Windows console. The compiler performs all classical compilation phases (lexical, syntax, semantic analysis, intermediate code generation, optimization, and x86 code generation) and produces assembly files that can be assembled with MASM and linked with the Irvine32 library.
 
----
-
 ## ✨ Language Features
 
 - **Variables** – auto‑declared on first assignment, integer only  
@@ -19,8 +17,6 @@ PixelLang is a small domain‑specific language for drawing 2D graphics and simp
 - **Comments** – line comments with `//`
 
 The generated assembly uses the Irvine32 library for console manipulation (`Gotoxy`, `WriteChar`, `ClrScr`, `Delay`, `ReadChar`).
-
----
 
 ## 🛠️ Prerequisites
 
@@ -36,8 +32,6 @@ The generated assembly uses the Irvine32 library for console manipulation (`Goto
 ### Environment (for this project)
 - The compiler outputs `.asm` files; you assemble & link them manually using the provided commands.
 
----
-
 ## 📦 Rust Dependencies (Cargo.toml)
 
 All dependencies are downloaded automatically by Cargo. No manual installation is required.
@@ -50,8 +44,6 @@ All dependencies are downloaded automatically by Cargo. No manual installation i
 | (no other runtime crates – parser is hand‑written) | |
 
 > **Note:** The compiler uses a **hand‑written recursive‑descent parser** (no `pest` or `nom` in the final version) to keep dependencies minimal and maximise control.
-
----
 
 ## 🔬 Compiler Phases – Complete Pipeline
 
@@ -69,11 +61,166 @@ The compiler follows the standard structure taught in CS4031:
 
 The output assembly is human‑readable, uses `.data` for variables, and includes helper functions (`DrawPixel_helper`, `DrawRect_helper`) that draw `*` and `#` using `Gotoxy`/`WriteChar`.
 
----
-
 ## 🚀 Building the Compiler
 
 ```bash
 git clone https://github.com/zahmed02/CS4031-Graphics-DSL-Compiler-Targeting-x86-Assembly.git
 cd CS4031-Graphics-DSL-Compiler-Targeting-x86-Assembly
 cargo build --release
+
+The executable will be at `target/release/cc-project.exe` (or `target/debug/cc-project.exe` for debug builds).
+
+---
+
+## 📖 Usage
+
+### 1. Compile a `.pixel` source file to assembly
+
+```bash
+cargo run -- --input examples/demo.pixel --output asm_output/demo.asm
+```
+
+Optional constant folding (optimisation):
+
+```bash
+cargo run -- --input examples/bounce.pixel --output asm_output/bounce.asm --optimize
+```
+
+### 2. Assemble with MASM (example for `demo.asm`)
+
+```bash
+cd asm_output
+ml /c /coff /I D:\DevTools\Irvine demo.asm
+```
+
+### 3. Link with Irvine32 library
+
+```bash
+link demo.obj D:\DevTools\Irvine\Irvine32.lib kernel32.lib user32.lib /subsystem:console
+```
+
+### 4. Run the executable
+
+```bash
+.\demo.exe
+```
+
+> **Note:** Adjust the path `/I D:\DevTools\Irvine` and the library paths to where you placed the Irvine32 files.
+
+---
+
+## 🧪 Example Programs
+
+All examples are located in the `examples/` folder.
+
+| File | Description |
+|------|-------------|
+| `demo.pixel` | Draws a small rectangle, waits for a key |
+| `bounce.pixel` | A rectangle bouncing left‑right |
+| `ball.pixel` | A single pixel bouncing inside a box |
+| `diagonal.pixel` | Draws a diagonal line of stars |
+| `grow.pixel` | A rectangle that grows and shrinks |
+| `checkerboard.pixel` | Draws a checkerboard‑like pattern |
+| `timer.pixel` | A shrinking progress bar |
+
+### Quick test with `bounce.pixel`
+
+```bash
+cargo run -- --input examples/bounce.pixel --output asm_output/bounce.asm
+cd asm_output
+ml /c /coff /I D:\DevTools\Irvine bounce.asm
+link bounce.obj D:\DevTools\Irvine\Irvine32.lib kernel32.lib user32.lib /subsystem:console
+.\bounce.exe
+```
+
+You will see a moving rectangle bouncing between x=2 and x=30.
+
+---
+
+## 📂 Project Structure
+
+```
+.
+├── .gitignore
+├── Cargo.toml
+├── Cargo.lock
+├── README.md
+├── examples/
+│   ├── ball.pixel
+│   ├── bounce.pixel
+│   ├── checkerboard.pixel
+│   ├── demo.pixel
+│   ├── diagonal.pixel
+│   ├── grow.pixel
+│   └── timer.pixel
+├── asm_output/
+│   └── (generated .asm, .obj, .exe files)
+├── src/
+│   ├── main.rs
+│   ├── ast.rs
+│   ├── optimizer.rs
+│   ├── lexer/mod.rs
+│   ├── parser/mod.rs
+│   ├── semantic/mod.rs
+│   ├── ir/mod.rs
+│   └── codegen/mod.rs
+└── target/               (build artefacts, ignored by Git)
+```
+
+---
+
+## ⚠️ Known Limitations
+
+- No `else` clause (only `if … then … end`)  
+- Only `<` and `>` comparisons; `==`, `!=`, `<=`, `>=` are not supported.  
+- Colors are ignored – `draw_pixel` draws `*`, `draw_rect` draws filled `#`.  
+- No floating‑point numbers.  
+- All variables are global (scoping is flat, but `if`/`loop` create nested scopes).  
+
+These limitations are intentional to keep the project focused on the compiler pipeline.
+
+---
+
+## 🧰 Dependencies – Where They Are Used
+
+### Rust crates (declared in `Cargo.toml`)
+- **`logos`** – used only in the lexer to generate tokens from source text.  
+- **`clap`** – used in `main.rs` to parse command‑line arguments (`--input`, `--output`, `--optimize`).  
+- **`anyhow`** – used for flexible error handling throughout the compiler.
+
+All crates are downloaded and compiled into the `target/` directory when you run `cargo build`. No system‑wide installation is required.
+
+### External tools (must be installed separately)
+- **MASM (`ml.exe`)** – part of Visual Studio Build Tools or Visual Studio.  
+- **Irvine32 library** – available from Kip Irvine’s website. Place it in a known directory (e.g., `D:\DevTools\Irvine`).  
+- **Windows SDK linker (`link.exe`)** – also included with Visual Studio Build Tools.
+
+---
+
+## 📄 License
+
+This project is created for educational purposes as part of CS4031 – Compiler Construction.
+
+---
+
+## 👤 Author
+
+**Zubair Ahmed** – [GitHub](https://github.com/zahmed02)
+
+---
+
+## 🙏 Acknowledgements
+
+- Kip Irvine for the Irvine32 library  
+- The Rust community for `logos`, `clap`, and `anyhow`  
+- Course instructor for guidance on compiler architecture
+
+```
+
+Simply copy the entire block above, paste it into a file named `README.md` in your project root, and commit & push it:
+
+```bash
+git add README.md
+git commit -m "Add comprehensive README"
+git push origin main
+```
