@@ -1,0 +1,24 @@
+[package]
+name = "cc-project"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+# Lexer
+logos = "0.15"
+
+# Error handling
+anyhow = "1.0"
+thiserror = "2.0"
+
+# CLI argument parsing
+clap = { version = "4.5", features = ["derive"] }
+
+# For working with paths and files
+walkdir = "2"
+
+# For colored console output (optional)
+colored = "2"
+
+[dev-dependencies]
+insta = "1.41"

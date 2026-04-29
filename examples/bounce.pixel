@@ -1,0 +1,16 @@
+x = 10
+dx = 1
+
+loop 50 times
+    clear_screen
+    draw_rect x, 10, 4, 4, 15
+    x = x + dx
+    if x > 30 then
+        dx = -1
+    end
+    if x < 2 then
+        dx = 1
+    end
+    delay 50
+end
+wait_key

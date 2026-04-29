@@ -1,0 +1,8 @@
+width = 20
+loop 20 times
+    clear_screen
+    draw_rect 5, 10, width, 2, 15
+    width = width - 1
+    delay 200
+end
+wait_key

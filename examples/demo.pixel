@@ -1,0 +1,5 @@
+x = 5
+y = 10
+clear_screen
+draw_rect x, y, 4, 4, 15
+wait_key

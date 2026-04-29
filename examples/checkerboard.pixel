@@ -1,0 +1,12 @@
+row = 0
+loop 8 times
+    col = 0
+    loop 8 times
+        if (row - col) > 0 then
+            draw_pixel col, row, 1
+        end
+        col = col + 1
+    end
+    row = row + 1
+end
+wait_key

@@ -1,0 +1,9 @@
+x = 0
+y = 0
+loop 20 times
+    draw_pixel x, y, 1
+    x = x + 1
+    y = y + 1
+    delay 50
+end
+wait_key
