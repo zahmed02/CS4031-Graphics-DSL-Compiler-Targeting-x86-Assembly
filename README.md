@@ -67,10 +67,8 @@ The output assembly is human‑readable, uses `.data` for variables, and include
 git clone https://github.com/zahmed02/CS4031-Graphics-DSL-Compiler-Targeting-x86-Assembly.git
 cd CS4031-Graphics-DSL-Compiler-Targeting-x86-Assembly
 cargo build --release
-
+```
 The executable will be at `target/release/cc-project.exe` (or `target/debug/cc-project.exe` for debug builds).
-
----
 
 ## 📖 Usage
 
@@ -107,8 +105,6 @@ link demo.obj D:\DevTools\Irvine\Irvine32.lib kernel32.lib user32.lib /subsystem
 
 > **Note:** Adjust the path `/I D:\DevTools\Irvine` and the library paths to where you placed the Irvine32 files.
 
----
-
 ## 🧪 Example Programs
 
 All examples are located in the `examples/` folder.
@@ -134,8 +130,6 @@ link bounce.obj D:\DevTools\Irvine\Irvine32.lib kernel32.lib user32.lib /subsyst
 ```
 
 You will see a moving rectangle bouncing between x=2 and x=30.
-
----
 
 ## 📂 Project Structure
 
@@ -167,8 +161,6 @@ You will see a moving rectangle bouncing between x=2 and x=30.
 └── target/               (build artefacts, ignored by Git)
 ```
 
----
-
 ## ⚠️ Known Limitations
 
 - No `else` clause (only `if … then … end`)  
@@ -178,8 +170,6 @@ You will see a moving rectangle bouncing between x=2 and x=30.
 - All variables are global (scoping is flat, but `if`/`loop` create nested scopes).  
 
 These limitations are intentional to keep the project focused on the compiler pipeline.
-
----
 
 ## 🧰 Dependencies – Where They Are Used
 
@@ -195,27 +185,15 @@ All crates are downloaded and compiled into the `target/` directory when you run
 - **Irvine32 library** – available from Kip Irvine’s website. Place it in a known directory (e.g., `D:\DevTools\Irvine`).  
 - **Windows SDK linker (`link.exe`)** – also included with Visual Studio Build Tools.
 
----
-
 ## 📄 License
 
 This project is created for educational purposes as part of CS4031 – Compiler Construction.
-
----
-
-## 👤 Author
-
-**Zubair Ahmed** – [GitHub](https://github.com/zahmed02)
-
----
 
 ## 🙏 Acknowledgements
 
 - Kip Irvine for the Irvine32 library  
 - The Rust community for `logos`, `clap`, and `anyhow`  
 - Course instructor for guidance on compiler architecture
-
-```
 
 Simply copy the entire block above, paste it into a file named `README.md` in your project root, and commit & push it:
 
