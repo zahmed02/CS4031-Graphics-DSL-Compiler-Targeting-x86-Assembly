@@ -1,7 +1,7 @@
 # CS4031 Graphics DSL Compiler Targeting x86 Assembly
 
 ## Course: CS4031 Compiler Construction
-## Instructor & Project Supervisor: Miss Shahar Bano Husnine
+## Instructor: Miss Shahar Bano Husnine
 
 ## Overview
 **Language:** Rust (latest stable)  
