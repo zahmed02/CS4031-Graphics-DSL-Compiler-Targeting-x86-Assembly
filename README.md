@@ -1,4 +1,4 @@
-# CS4031 Graphics DSL Compiler Targeting x86 Assembly
+# Graphics DSL Compiler Targeting x86 Assembly
 
 ## Course: CS4031 Compiler Construction
 ## Instructor: Miss Shahar Bano Husnine
