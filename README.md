@@ -87,7 +87,7 @@ cargo build --release
 ```
 The executable will be at `target/release/cc-project.exe` (or `target/debug/cc-project.exe` for debug builds).
 
-## 📖 Usage
+## Usage
 
 ### 1. Compile a `.pixel` source file to assembly
 
