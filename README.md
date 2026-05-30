@@ -177,7 +177,7 @@ link bounce.obj D:\DevTools\Irvine\Irvine32.lib kernel32.lib user32.lib /subsyst
 └── target/               (build artefacts, ignored by Git)
 ```
 
-## Dependencies & Where They Are Used
+## Dependencies & Where They're Used
 
 ### Rust crates (declared in `Cargo.toml`)
 - **`logos`**: used only in the lexer to generate tokens from source text.  
